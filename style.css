@@ -22,7 +22,12 @@ h1, h2 {
     text-align: center;
 }
 
-#list-management, #name-input {
+#selection-area {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#name-input, #list-management {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
@@ -75,7 +80,6 @@ li {
 }
 
 #selected-name {
-    text-align: center;
     font-size: 1.2em;
     margin-top: 20px;
 }

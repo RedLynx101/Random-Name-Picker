@@ -13,10 +13,9 @@
     <div class="container">
         <h1>Random Name Picker</h1>
 
-        <div id="list-management">
-            <select id="list-selector"></select>
-            <input type="text" id="new-list-name" placeholder="New list name">
-            <button id="create-list-btn">Create New List</button>
+        <div id="selection-area">
+            <button id="select-name-btn">Select Random Name</button>
+            <p id="selected-name">Selected Name: <span id="selected-name-display">None</span></p>
         </div>
 
         <div id="name-input">
@@ -27,8 +26,11 @@
         <h2>List of Names</h2>
         <ul id="name-list"></ul>
 
-        <button id="select-name-btn">Select Random Name</button>
-        <p id="selected-name">Selected Name: <span id="selected-name-display">None</span></p>
+        <div id="list-management">
+            <select id="list-selector"></select>
+            <input type="text" id="new-list-name" placeholder="New list name">
+            <button id="create-list-btn">Create New List</button>
+        </div>
 
         <button id="reset-btn">Reset Names</button>
     </div>
