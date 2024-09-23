@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Name Picker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icon-512x512.png">
+</head>
+<body>
+    <div class="container">
+        <h1>Random Name Picker</h1>
+
+        <div id="name-input">
+            <input type="text" id="new-name" placeholder="Enter a name">
+            <button id="add-name-btn">Add Name</button>
+        </div>
+
+        <h2>List of Names</h2>
+        <ul id="name-list"></ul>
+
+        <button id="select-name-btn">Select Random Name</button>
+        <p id="selected-name">Selected Name: <span id="selected-name-display">None</span></p>
+
+        <button id="reset-btn">Reset Names</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('serviceWorker.js')
+                .then((reg) => console.log('Service worker registered:', reg))
+                .catch((err) => console.log('Service worker registration failed:', err));
+        }
+    </script>
+</body>
+</html>
