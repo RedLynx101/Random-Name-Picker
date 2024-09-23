@@ -103,11 +103,49 @@ function changeCurrentList() {
     renderNames();
 }
 
+function exportData() {
+    const dataStr = JSON.stringify(lists);
+    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+    const exportFileDefaultName = 'name_lists.json';
+
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+}
+
+function importData() {
+    const fileInput = document.getElementById('import-file');
+    const file = fileInput.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const importedData = JSON.parse(e.target.result);
+                lists = importedData;
+                currentList = Object.keys(lists)[0] || "Default List";
+                saveData();
+                renderLists();
+                renderNames();
+                alert('Data imported successfully!');
+            } catch (error) {
+                alert('Error importing data. Please make sure the file is a valid JSON.');
+            }
+        };
+        reader.readAsText(file);
+    }
+}
+
 document.getElementById('add-name-btn').addEventListener('click', addName);
 document.getElementById('select-name-btn').addEventListener('click', selectRandomName);
 document.getElementById('reset-btn').addEventListener('click', resetNames);
 document.getElementById('create-list-btn').addEventListener('click', createNewList);
 document.getElementById('list-selector').addEventListener('change', changeCurrentList);
+document.getElementById('export-btn').addEventListener('click', exportData);
+document.getElementById('import-btn').addEventListener('click', function() {
+    document.getElementById('import-file').click();
+});
+document.getElementById('import-file').addEventListener('change', importData);
 
 // Add name when Enter key is pressed in the input field
 document.getElementById('new-name').addEventListener('keypress', function(e) {
