@@ -1,11 +1,31 @@
 // Initialize data from localStorage or create new data
-let names = JSON.parse(localStorage.getItem('names')) || [];
+let lists = JSON.parse(localStorage.getItem('nameLists')) || { "Default List": [] };
+let currentList = localStorage.getItem('currentList') || "Default List";
+
+function saveData() {
+    localStorage.setItem('nameLists', JSON.stringify(lists));
+    localStorage.setItem('currentList', currentList);
+}
+
+function renderLists() {
+    const listSelector = document.getElementById('list-selector');
+    listSelector.innerHTML = '';
+    Object.keys(lists).forEach(listName => {
+        const option = document.createElement('option');
+        option.value = listName;
+        option.textContent = listName;
+        if (listName === currentList) {
+            option.selected = true;
+        }
+        listSelector.appendChild(option);
+    });
+}
 
 function renderNames() {
     const nameList = document.getElementById('name-list');
     nameList.innerHTML = '';
 
-    names.forEach((nameObj, index) => {
+    lists[currentList].forEach((nameObj, index) => {
         const li = document.createElement('li');
         li.innerHTML = `
             ${nameObj.name} 
@@ -25,21 +45,21 @@ function addName() {
     const newNameInput = document.getElementById('new-name');
     const newName = newNameInput.value.trim();
     if (newName) {
-        names.push({ name: newName, enabled: true, used: false });
-        localStorage.setItem('names', JSON.stringify(names));
+        lists[currentList].push({ name: newName, enabled: true, used: false });
+        saveData();
         renderNames();
         newNameInput.value = '';
     }
 }
 
 function toggleEnabled(index) {
-    names[index].enabled = !names[index].enabled;
-    localStorage.setItem('names', JSON.stringify(names));
+    lists[currentList][index].enabled = !lists[currentList][index].enabled;
+    saveData();
     renderNames();
 }
 
 function selectRandomName() {
-    const enabledNames = names.filter(name => name.enabled && !name.used);
+    const enabledNames = lists[currentList].filter(name => name.enabled && !name.used);
     if (enabledNames.length === 0) {
         alert('No names left to select!');
         return;
@@ -50,22 +70,44 @@ function selectRandomName() {
     document.getElementById('selected-name-display').textContent = selectedName;
 
     // Mark the selected name as used
-    const nameObj = names.find(n => n.name === selectedName);
+    const nameObj = lists[currentList].find(n => n.name === selectedName);
     nameObj.used = true;
-    localStorage.setItem('names', JSON.stringify(names));
+    saveData();
     renderNames();
 }
 
 function resetNames() {
-    names = names.map(name => ({ ...name, used: false }));
-    localStorage.setItem('names', JSON.stringify(names));
+    lists[currentList] = lists[currentList].map(name => ({ ...name, used: false }));
+    saveData();
     renderNames();
     document.getElementById('selected-name-display').textContent = 'None';
+}
+
+function createNewList() {
+    const newListName = document.getElementById('new-list-name').value.trim();
+    if (newListName && !lists[newListName]) {
+        lists[newListName] = [];
+        currentList = newListName;
+        saveData();
+        renderLists();
+        renderNames();
+        document.getElementById('new-list-name').value = '';
+    } else {
+        alert('Please enter a unique list name.');
+    }
+}
+
+function changeCurrentList() {
+    currentList = document.getElementById('list-selector').value;
+    saveData();
+    renderNames();
 }
 
 document.getElementById('add-name-btn').addEventListener('click', addName);
 document.getElementById('select-name-btn').addEventListener('click', selectRandomName);
 document.getElementById('reset-btn').addEventListener('click', resetNames);
+document.getElementById('create-list-btn').addEventListener('click', createNewList);
+document.getElementById('list-selector').addEventListener('change', changeCurrentList);
 
 // Add name when Enter key is pressed in the input field
 document.getElementById('new-name').addEventListener('keypress', function(e) {
@@ -74,4 +116,14 @@ document.getElementById('new-name').addEventListener('keypress', function(e) {
     }
 });
 
-window.onload = renderNames;
+// Add list when Enter key is pressed in the new list input field
+document.getElementById('new-list-name').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        createNewList();
+    }
+});
+
+window.onload = function() {
+    renderLists();
+    renderNames();
+};

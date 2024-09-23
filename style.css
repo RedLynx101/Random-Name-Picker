@@ -22,17 +22,21 @@ h1, h2 {
     text-align: center;
 }
 
-#name-input {
+#list-management, #name-input {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
 }
 
-#new-name {
+#list-selector, #new-list-name, #new-name {
     padding: 10px;
-    width: 60%;
+    margin-right: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
+}
+
+#list-selector {
+    min-width: 150px;
 }
 
 button {
@@ -47,10 +51,6 @@ button {
 
 button:hover {
     background-color: #4cae4c;
-}
-
-#add-name-btn {
-    margin-left: 10px;
 }
 
 ul {
