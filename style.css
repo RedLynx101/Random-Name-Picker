@@ -3,7 +3,8 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #FFFFFF;
+    color: #002E5D;
 }
 
 .container {
@@ -11,14 +12,14 @@ body {
     margin: auto;
     overflow: hidden;
     padding: 20px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #F8F8F8;
+    box-shadow: 0 0 10px rgba(0, 46, 93, 0.1);
     border-radius: 5px;
     margin-top: 20px;
 }
 
 h1, h2 {
-    color: #333;
+    color: #002E5D;
     text-align: center;
 }
 
@@ -37,7 +38,7 @@ h1, h2 {
 #list-selector, #new-list-name, #new-name {
     padding: 10px;
     margin: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #002E5D;
     border-radius: 4px;
 }
 
@@ -47,7 +48,7 @@ h1, h2 {
 
 button {
     padding: 10px 15px;
-    background-color: #5cb85c;
+    background-color: #002E5D;
     color: white;
     border: none;
     cursor: pointer;
@@ -57,15 +58,15 @@ button {
 }
 
 button:hover {
-    background-color: #4cae4c;
+    background-color: #00508F;
 }
 
 #delete-list-btn {
-    background-color: #d9534f;
+    background-color: #990000;
 }
 
 #delete-list-btn:hover {
-    background-color: #c9302c;
+    background-color: #CC0000;
 }
 
 ul {
@@ -74,7 +75,7 @@ ul {
 }
 
 li {
-    background-color: #f9f9f9;
+    background-color: #F8F8F8;
     margin-bottom: 5px;
     padding: 10px;
     display: flex;
@@ -82,6 +83,7 @@ li {
     align-items: center;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+    border: 1px solid #002E5D;
 }
 
 li > div {
@@ -101,12 +103,12 @@ li input[type="checkbox"] {
 
 li button {
     padding: 5px 10px;
-    background-color: #d9534f;
+    background-color: #990000;
     margin-left: 10px;
 }
 
 li button:hover {
-    background-color: #c9302c;
+    background-color: #CC0000;
 }
 
 #select-name-btn, #reset-btn {
@@ -122,18 +124,18 @@ li button:hover {
 
 #selected-name-display {
     font-weight: bold;
-    color: #5cb85c;
+    color: #002E5D;
 }
 
 #list-management {
     margin-top: 20px;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #002E5D;
     padding-top: 20px;
 }
 
 #data-management {
     margin-top: 20px;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #002E5D;
     padding-top: 20px;
 }
 
@@ -142,9 +144,9 @@ li button:hover {
 }
 
 @keyframes highlight {
-    0% { background-color: #f9f9f9; }
-    50% { background-color: #5cb85c; }
-    100% { background-color: #f9f9f9; }
+    0% { background-color: #F8F8F8; }
+    50% { background-color: #002E5D; color: #FFFFFF; }
+    100% { background-color: #F8F8F8; }
 }
 
 .highlight {
