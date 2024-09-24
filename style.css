@@ -31,11 +31,12 @@ h1, h2 {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 #list-selector, #new-list-name, #new-name {
     padding: 10px;
-    margin-right: 10px;
+    margin: 5px;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
@@ -52,10 +53,19 @@ button {
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+    margin: 5px;
 }
 
 button:hover {
     background-color: #4cae4c;
+}
+
+#delete-list-btn {
+    background-color: #d9534f;
+}
+
+#delete-list-btn:hover {
+    background-color: #c9302c;
 }
 
 ul {
@@ -131,7 +141,6 @@ li button:hover {
     margin: 0 10px;
 }
 
-/* New animation styles */
 @keyframes highlight {
     0% { background-color: #f9f9f9; }
     50% { background-color: #5cb85c; }

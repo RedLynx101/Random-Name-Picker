@@ -175,6 +175,21 @@ function deleteName(index) {
     }
 }
 
+function deleteList() {
+    if (Object.keys(lists).length === 1) {
+        alert("You cannot delete the only list.");
+        return;
+    }
+
+    if (confirm(`Are you sure you want to delete the list "${currentList}"?`)) {
+        delete lists[currentList];
+        currentList = Object.keys(lists)[0];
+        saveData();
+        renderLists();
+        renderNames();
+    }
+}
+
 document.getElementById('add-name-btn').addEventListener('click', addName);
 document.getElementById('select-name-btn').addEventListener('click', selectRandomName);
 document.getElementById('reset-btn').addEventListener('click', resetNames);
@@ -185,6 +200,7 @@ document.getElementById('import-btn').addEventListener('click', function() {
     document.getElementById('import-file').click();
 });
 document.getElementById('import-file').addEventListener('change', importData);
+document.getElementById('delete-list-btn').addEventListener('click', deleteList);
 
 // Add name when Enter key is pressed in the input field
 document.getElementById('new-name').addEventListener('keypress', function(e) {
