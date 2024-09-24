@@ -68,12 +68,21 @@ function toggleUsed(index) {
     renderNames();
 }
 
-function selectRandomName() {
+async function selectRandomName() {
+    const selectButton = document.getElementById('select-name-btn');
+    selectButton.classList.add('spin', 'disabled');
+    selectButton.disabled = true;
+
     const enabledNames = lists[currentList].filter(name => name.enabled && !name.used);
     if (enabledNames.length === 0) {
         alert('No names left to select!');
+        selectButton.classList.remove('spin', 'disabled');
+        selectButton.disabled = false;
         return;
     }
+
+    // Simulate a delay for the selection process
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
     const randomIndex = Math.floor(Math.random() * enabledNames.length);
     const selectedName = enabledNames[randomIndex].name;
@@ -84,6 +93,18 @@ function selectRandomName() {
     nameObj.used = true;
     saveData();
     renderNames();
+
+    // Highlight the selected name in the list
+    const nameItems = document.querySelectorAll('#name-list li');
+    nameItems.forEach(item => {
+        if (item.textContent.includes(selectedName)) {
+            item.classList.add('highlight');
+            setTimeout(() => item.classList.remove('highlight'), 1000);
+        }
+    });
+
+    selectButton.classList.remove('spin', 'disabled');
+    selectButton.disabled = false;
 }
 
 function resetNames() {

@@ -71,6 +71,7 @@ li {
     justify-content: space-between;
     align-items: center;
     border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
 li > div {
@@ -128,4 +129,29 @@ li button:hover {
 
 #export-btn, #import-btn {
     margin: 0 10px;
+}
+
+/* New animation styles */
+@keyframes highlight {
+    0% { background-color: #f9f9f9; }
+    50% { background-color: #5cb85c; }
+    100% { background-color: #f9f9f9; }
+}
+
+.highlight {
+    animation: highlight 1s ease-in-out;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
