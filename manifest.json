@@ -8,12 +8,12 @@
     "description": "A simple app to randomly pick names from a list",
     "icons": [
         {
-            "src": "icon-192x192.png",
+            "src": "favicon.ico",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "icon-512x512.png",
+            "src": "favicon.ico",
             "sizes": "512x512",
             "type": "image/png"
         }
