@@ -69,12 +69,21 @@ button:hover {
     background-color: #CC0000;
 }
 
-ul {
+#view-toggle {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#name-container {
+    transition: all 0.3s ease;
+}
+
+#name-container.list-view ul {
     list-style-type: none;
     padding: 0;
 }
 
-li {
+#name-container.list-view li {
     background-color: #F8F8F8;
     margin-bottom: 5px;
     padding: 10px;
@@ -84,6 +93,33 @@ li {
     border-radius: 4px;
     transition: background-color 0.3s ease;
     border: 1px solid #002E5D;
+}
+
+#name-container.grid-view ul {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+#name-container.grid-view li {
+    background-color: #F8F8F8;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    border: 1px solid #002E5D;
+    text-align: center;
+}
+
+#name-container.grid-view li > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 li > div {

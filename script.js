@@ -1,10 +1,12 @@
 // Initialize data from localStorage or create new data
 let lists = JSON.parse(localStorage.getItem('nameLists')) || { "Default List": [] };
 let currentList = localStorage.getItem('currentList') || "Default List";
+let isGridView = JSON.parse(localStorage.getItem('isGridView')) || false;
 
 function saveData() {
     localStorage.setItem('nameLists', JSON.stringify(lists));
     localStorage.setItem('currentList', currentList);
+    localStorage.setItem('isGridView', JSON.stringify(isGridView));
 }
 
 function renderLists() {
@@ -43,6 +45,25 @@ function renderNames() {
         `;
         nameList.appendChild(li);
     });
+
+    updateView();
+}
+
+function updateView() {
+    const nameContainer = document.getElementById('name-container');
+    if (isGridView) {
+        nameContainer.classList.remove('list-view');
+        nameContainer.classList.add('grid-view');
+    } else {
+        nameContainer.classList.remove('grid-view');
+        nameContainer.classList.add('list-view');
+    }
+}
+
+function toggleView() {
+    isGridView = !isGridView;
+    saveData();
+    updateView();
 }
 
 function addName() {
@@ -201,6 +222,7 @@ document.getElementById('import-btn').addEventListener('click', function() {
 });
 document.getElementById('import-file').addEventListener('change', importData);
 document.getElementById('delete-list-btn').addEventListener('click', deleteList);
+document.getElementById('toggle-view-btn').addEventListener('click', toggleView);
 
 // Add name when Enter key is pressed in the input field
 document.getElementById('new-name').addEventListener('keypress', function(e) {
