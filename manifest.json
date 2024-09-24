@@ -4,7 +4,7 @@
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#5cb85c",
+    "theme_color": "#002E5D",
     "description": "A simple app to randomly pick names from a list. Made by Noah Hicks.",
     "icons": [
         {
