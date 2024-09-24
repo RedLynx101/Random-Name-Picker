@@ -35,6 +35,7 @@ function renderNames() {
                     Enable
                 </label>
                 <span>${nameObj.used ? '(Used)' : ''}</span>
+                <button onclick="deleteName(${index})">Delete</button>
             </div>
         `;
         nameList.appendChild(li);
@@ -133,6 +134,14 @@ function importData() {
             }
         };
         reader.readAsText(file);
+    }
+}
+
+function deleteName(index) {
+    if (confirm(`Are you sure you want to delete "${lists[currentList][index].name}"?`)) {
+        lists[currentList].splice(index, 1);
+        saveData();
+        renderNames();
     }
 }
 

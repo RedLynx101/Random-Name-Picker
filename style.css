@@ -73,6 +73,16 @@ li {
     border-radius: 4px;
 }
 
+li button {
+    padding: 5px 10px;
+    background-color: #d9534f;
+    margin-left: 10px;
+}
+
+li button:hover {
+    background-color: #c9302c;
+}
+
 #select-name-btn, #reset-btn {
     display: block;
     width: 200px;
