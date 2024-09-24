@@ -34,7 +34,10 @@ function renderNames() {
                     <input type="checkbox" ${nameObj.enabled ? 'checked' : ''} onchange="toggleEnabled(${index})">
                     Enable
                 </label>
-                <span>${nameObj.used ? '(Used)' : ''}</span>
+                <label>
+                    <input type="checkbox" ${nameObj.used ? 'checked' : ''} onchange="toggleUsed(${index})">
+                    Used
+                </label>
                 <button onclick="deleteName(${index})">Delete</button>
             </div>
         `;
@@ -55,6 +58,12 @@ function addName() {
 
 function toggleEnabled(index) {
     lists[currentList][index].enabled = !lists[currentList][index].enabled;
+    saveData();
+    renderNames();
+}
+
+function toggleUsed(index) {
+    lists[currentList][index].used = !lists[currentList][index].used;
     saveData();
     renderNames();
 }
