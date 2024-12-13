@@ -27,9 +27,11 @@ task = "shell.exec"
 args = "python -m http.server 8000"
 waitForPort = 8000
 
+# [deployment]
+# deploymentTarget = "static"
+# publicDir = "/"
 [deployment]
-deploymentTarget = "static"
-publicDir = "/"
+run = ["sh", "-c", "python -m http.server 8000"]
 
 [[ports]]
 localPort = 8000
